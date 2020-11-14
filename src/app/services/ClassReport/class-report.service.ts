@@ -1,11 +1,13 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {ClassReport} from '../../model/class-report';
+import {TableItem} from '../../model/table-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassReportService {
 
+  public drawerIsVisibleEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
   private reports: ClassReport[] = [
     {
       className: 'Algorithms',
@@ -93,6 +95,8 @@ export class ClassReportService {
       attendance: ClassReportService.getRandomNumber(0, 1, 4)
     }
   ];
+  private selectedItem: TableItem;
+  private drawerIsVisible = false;
 
   constructor() {
   }
@@ -108,4 +112,19 @@ export class ClassReportService {
   getReports(): ClassReport[] {
     return this.reports;
   }
+
+  openDrawer(tableItem: TableItem): void {
+    this.drawerIsVisible = true;
+    tableItem.selected = true;
+    this.selectedItem = tableItem;
+    this.drawerIsVisibleEmitter.emit(this.drawerIsVisible);
+  }
+
+  closeDrawer(): void {
+    this.drawerIsVisible = false;
+    this.selectedItem.selected = false;
+    this.selectedItem = undefined;
+    this.drawerIsVisibleEmitter.emit(this.drawerIsVisible);
+  }
+
 }

@@ -8,12 +8,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let tableItem of reportTable.data">
+  <tr *ngFor="let tableItem of reportTable.data" [ngClass]="{'selected': tableItem.selected}">
     <td>{{ tableItem.item.className }}</td>
     <td>{{ tableItem.item.grade }}</td>
     <td>{{ tableItem.item.attendance }}%</td>
     <td>
-      <a>Edit</a>
+      <a nz-button nzType="link" (click)="reportService.openDrawer(tableItem)" disabled="{{tableItem.selected || disableEdit}}">Edit</a>
     </td>
   </tr>
   </tbody>

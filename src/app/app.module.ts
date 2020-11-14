@@ -8,18 +8,23 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
 import {registerLocaleData} from '@angular/common';
 import en from '@angular/common/locales/en';
-import {ReportTableComponent} from './report-table/report-table.component';
+import {ReportTableComponent} from './components/report-table/report-table.component';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NzTableModule} from 'ng-zorro-antd/table';
+import {NzButtonModule} from 'ng-zorro-antd/button';
+import {NzDrawerModule} from 'ng-zorro-antd/drawer';
+import {ClassEditionDrawerComponent} from './components/class-edition-drawer/class-edition-drawer.component';
+import {NzDescriptionsModule} from 'ng-zorro-antd/descriptions';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReportTableComponent
+    ReportTableComponent,
+    ClassEditionDrawerComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,10 @@ registerLocaleData(en);
     NzLayoutModule,
     NzMenuModule,
     NzIconModule,
-    NzTableModule
+    NzTableModule,
+    NzButtonModule,
+    NzDrawerModule,
+    NzDescriptionsModule
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent]
