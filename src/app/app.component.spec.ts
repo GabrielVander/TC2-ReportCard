@@ -22,10 +22,10 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('TC2-ReportCard');
   });
 
-  it('should render title', () => {
+  it('should render table', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('TC2-ReportCard app is running!');
+    expect(compiled.querySelector('app-report-table')).toBeTruthy();
   });
 });

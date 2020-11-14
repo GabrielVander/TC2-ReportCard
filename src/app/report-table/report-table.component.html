@@ -1,0 +1,20 @@
+<nz-table #reportTable [nzData]="tableData" [nzFrontPagination]="false" nzSize="small">
+  <thead>
+  <tr>
+    <th>Class</th>
+    <th>Grade</th>
+    <th>Attendance (%)</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let tableItem of reportTable.data">
+    <td>{{ tableItem.item.className }}</td>
+    <td>{{ tableItem.item.grade }}</td>
+    <td>{{ tableItem.item.attendance }}%</td>
+    <td>
+      <a>Edit</a>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
