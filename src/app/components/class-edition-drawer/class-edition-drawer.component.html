@@ -1,0 +1,35 @@
+<nz-drawer [nzVisible]="true" *ngIf="item !== null" nzPlacement="bottom" nzTitle="Edit" [nzClosable]="true"
+           (nzOnClose)="reportService.closeDrawer()">
+  <form nz-form class="editionForm">
+    <div nz-row [nzGutter]="15" nzAlign="middle" nzJustify="center">
+      <div nz-col nzSpan="7">
+        <nz-form-item>
+          <nz-form-label nzFor="classNameInput">Class</nz-form-label>
+          <nz-form-control>
+            <nz-input-group>
+              <input [ngModel]="item.className" (ngModelChange)="updateClassName($event)" name="classNameInput" nz-input/>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col>
+        <nz-form-item>
+          <nz-form-label nzFor="gradeInput">Grade</nz-form-label>
+          <nz-form-control>
+            <nz-input-number [ngModel]="item.grade" (ngModelChange)="updateGrade($event)" name="gradeInput" [nzMin]="0" [nzMax]="10"
+                             [nzStep]="1"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col>
+        <nz-form-item>
+          <nz-form-label nzFor="attendanceInput">Attendance</nz-form-label>
+          <nz-form-control>
+            <nz-input-number [ngModel]="item.attendance" (ngModelChange)="updateAttendance($event)" name="attendanceInput" [nzMin]="0" [nzMax]="100"
+                             [nzStep]="1"></nz-input-number>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+</nz-drawer>
