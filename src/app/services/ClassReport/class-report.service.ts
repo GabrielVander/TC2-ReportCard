@@ -7,96 +7,95 @@ import {TableItem} from '../../model/table-item';
 })
 export class ClassReportService {
 
-  public drawerIsVisibleEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public selectedItemEmitter: EventEmitter<TableItem> = new EventEmitter<TableItem>();
   private reports: ClassReport[] = [
     {
       className: 'Algorithms',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: Math.floor(ClassReportService.getRandomNumber(0, 1, 4))
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Artificial Intelligence',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Calculus',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Computer Architecture',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Computer Science Theory',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Computer Theory',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Data Logic',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Data Management',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Design Physics',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Device Utilization',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Electronic Design',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Files and Databases',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Information Management',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Logic Design',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Machine Language',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Network Fundamentals',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     },
     {
       className: 'Operating Systems',
       grade: ClassReportService.getRandomNumber(0, 10, 2),
-      attendance: ClassReportService.getRandomNumber(0, 1, 4)
+      attendance: ClassReportService.getRandomNumber(0, 100, 2)
     }
   ];
   private selectedItem: TableItem;
-  private drawerIsVisible = false;
 
   constructor() {
   }
@@ -114,17 +113,20 @@ export class ClassReportService {
   }
 
   openDrawer(tableItem: TableItem): void {
-    this.drawerIsVisible = true;
     tableItem.selected = true;
     this.selectedItem = tableItem;
-    this.drawerIsVisibleEmitter.emit(this.drawerIsVisible);
+    this.selectedItemEmitter.emit(this.selectedItem);
   }
 
   closeDrawer(): void {
-    this.drawerIsVisible = false;
     this.selectedItem.selected = false;
-    this.selectedItem = undefined;
-    this.drawerIsVisibleEmitter.emit(this.drawerIsVisible);
+    this.selectedItem = null;
+    this.selectedItemEmitter.emit(this.selectedItem);
+  }
+
+  updateItem(item: ClassReport): void {
+    this.selectedItem.item = item;
+    this.selectedItemEmitter.emit(this.selectedItem);
   }
 
 }

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ClassReportService} from '../../services/ClassReport/class-report.service';
+import {ClassReport} from '../../model/class-report';
+import {TableItem} from '../../model/table-item';
 
 @Component({
   selector: 'app-class-edition-drawer',
@@ -8,14 +10,36 @@ import {ClassReportService} from '../../services/ClassReport/class-report.servic
 })
 export class ClassEditionDrawerComponent implements OnInit {
 
-  public open = false;
+  public item: ClassReport = null;
 
   constructor(public reportService: ClassReportService) {
-    this.reportService.drawerIsVisibleEmitter.subscribe(value => {
-      return this.open = value;
+    this.reportService.selectedItemEmitter.subscribe((value: TableItem) => {
+      return this.item = value ? value.item : null;
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
+
+  updateClassName(value: string): void {
+    this.reportService.updateItem({
+      ...this.item,
+      className: value,
+    });
+  }
+
+  updateGrade(value: number): void {
+    this.reportService.updateItem({
+      ...this.item,
+      grade: value,
+    });
+  }
+
+  updateAttendance(value: number): void {
+    this.reportService.updateItem({
+      ...this.item,
+      attendance: value,
+    });
+  }
 
 }

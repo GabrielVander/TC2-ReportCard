@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {en_US, NZ_I18N} from 'ng-zorro-antd/i18n';
@@ -17,6 +17,11 @@ import {NzButtonModule} from 'ng-zorro-antd/button';
 import {NzDrawerModule} from 'ng-zorro-antd/drawer';
 import {ClassEditionDrawerComponent} from './components/class-edition-drawer/class-edition-drawer.component';
 import {NzDescriptionsModule} from 'ng-zorro-antd/descriptions';
+import {NzFormModule} from 'ng-zorro-antd/form';
+import {NzGridModule} from 'ng-zorro-antd/grid';
+import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
+import {NzInputModule} from 'ng-zorro-antd/input';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 
 registerLocaleData(en);
 
@@ -37,7 +42,13 @@ registerLocaleData(en);
     NzTableModule,
     NzButtonModule,
     NzDrawerModule,
-    NzDescriptionsModule
+    NzDescriptionsModule,
+    NzFormModule,
+    NzGridModule,
+    NzInputNumberModule,
+    NzSelectModule,
+    NzInputModule,
+    ReactiveFormsModule
   ],
   providers: [{provide: NZ_I18N, useValue: en_US}],
   bootstrap: [AppComponent]

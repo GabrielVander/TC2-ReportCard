@@ -17,15 +17,13 @@ export class ReportTableComponent implements OnInit {
       selected: false,
       item: {
         ...report,
-        attendance: Math.round(((report.attendance * 100) + Number.EPSILON) * 100) / 100
       },
     }));
-    this.reportService.drawerIsVisibleEmitter.subscribe(value => {
-      return this.disableEdit = value;
+    this.reportService.selectedItemEmitter.subscribe(value => {
+      return this.disableEdit = value !== null;
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }
